@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="card">
+        <h1>Accueil</h1>
+        <p>Le projet Spring Boot est prêt pour le chapitre 2.</p>
+        <p>Utilisez le menu pour accéder à la gestion des artistes.</p>
+        <a class="button" th:href="@{/artists}">Voir les artistes</a>
+    </section>
+</div>
+</body>
+</html>
