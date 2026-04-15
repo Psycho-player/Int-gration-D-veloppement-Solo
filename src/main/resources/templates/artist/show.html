@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Fiche d'un artiste</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="card">
+        <h1 th:text="|${artist.firstname} ${artist.lastname}|"></h1>
+
+        <dl class="details-grid">
+            <dt>Id</dt>
+            <dd th:text="${artist.id}">1</dd>
+
+            <dt>Firstname</dt>
+            <dd th:text="${artist.firstname}">Bob</dd>
+
+            <dt>Lastname</dt>
+            <dd th:text="${artist.lastname}">Sull</dd>
+        </dl>
+
+        <div class="actions-row">
+            <a class="button secondary" th:href="@{/artists/{id}/edit(id=${artist.id})}">Modifier</a>
+
+            <form th:id="|deleteForm-${artist.id}|"
+                  th:action="@{/artists/{id}(id=${artist.id})}"
+                  th:method="delete">
+                <button type="button"
+                        class="button danger"
+                        th:onclick="|if(confirm('Confirmer la suppression de l\'artiste #${artist.id} ?')) { document.getElementById('deleteForm-${artist.id}').submit(); }|">
+                    Supprimer
+                </button>
+            </form>
+        </div>
+
+        <nav class="back-nav">
+            <a th:href="@{/artists}">Retour à l'index</a>
+        </nav>
+    </section>
+</div>
+</body>
+</html>

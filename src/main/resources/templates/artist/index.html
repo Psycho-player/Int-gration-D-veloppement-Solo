@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Liste des artistes</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="card">
+        <div class="page-title-row">
+            <h1 th:text="${title}">Liste des artistes</h1>
+            <a class="button" th:href="@{/artists/create}">Ajouter un artiste</a>
+        </div>
+
+        <table class="table" th:unless="${#lists.isEmpty(artists)}">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="artist : ${artists}">
+                <td th:text="${artist.firstname}">Bob</td>
+                <td th:text="${artist.lastname}">Sull</td>
+                <td><a th:href="@{/artists/{id}(id=${artist.id})}">Voir</a></td>
+                <td><a th:href="@{/artists/{id}/edit(id=${artist.id})}">Modifier</a></td>
+                <td>
+                    <form th:id="|deleteForm-${artist.id}|"
+                          th:action="@{/artists/{id}(id=${artist.id})}"
+                          th:method="delete">
+                        <a href="#"
+                           th:onclick="|if(confirm('Confirmer la suppression de l\'artiste #${artist.id} ?')) { document.getElementById('deleteForm-${artist.id}').submit(); } return false;|">
+                            Supprimer
+                        </a>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p th:if="${#lists.isEmpty(artists)}">Aucun artiste trouvé.</p>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="site-header">
+    <div class="container header-inner">
+        <a class="brand" th:href="@{/}">Projet Réservations</a>
+        <nav>
+            <ul class="nav-list">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/artists}">Artists</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>
