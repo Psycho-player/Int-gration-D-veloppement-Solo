@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Artist;
 import com.example.demo.service.ArtistService;
@@ -61,15 +62,18 @@ public class ArtistController {
     public String store(
             @Valid @ModelAttribute("artist") Artist artist,
             BindingResult bindingResult,
-            Model model) {
+            Model model,
+            RedirectAttributes redirAttrs) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("back", "/artists");
             model.addAttribute("title", "Création d'un artiste");
+            model.addAttribute("errorMessage", "Échec de la création de l'artiste !");
             return "artist/create";
         }
 
         Artist savedArtist = service.addArtist(artist);
+        redirAttrs.addFlashAttribute("successMessage", "Artiste créé avec succès.");
         return "redirect:/artists/" + savedArtist.getId();
     }
 
@@ -98,28 +102,35 @@ public class ArtistController {
             @Valid @ModelAttribute("artist") Artist artist,
             BindingResult bindingResult,
             @PathVariable long id,
-            Model model) {
+            Model model,
+            RedirectAttributes redirAttrs) {
 
         Artist existing = service.getArtist(id);
         if (existing == null) {
+            redirAttrs.addFlashAttribute("errorMessage", "Artiste introuvable.");
             return "redirect:/artists";
         }
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("back", "/artists/" + id);
             model.addAttribute("title", "Modification d'un artiste");
+            model.addAttribute("errorMessage", "Échec de la modification de l'artiste !");
             return "artist/edit";
         }
 
         Artist updatedArtist = service.updateArtist(id, artist);
+        redirAttrs.addFlashAttribute("successMessage", "Artiste modifié avec succès.");
         return "redirect:/artists/" + updatedArtist.getId();
     }
 
     @DeleteMapping("/artists/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable long id, RedirectAttributes redirAttrs) {
         Artist existing = service.getArtist(id);
         if (existing != null) {
             service.deleteArtist(id);
+            redirAttrs.addFlashAttribute("successMessage", "Artiste supprimé avec succès.");
+        } else {
+            redirAttrs.addFlashAttribute("errorMessage", "Échec de la suppression de l'artiste !");
         }
         return "redirect:/artists";
     }

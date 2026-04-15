@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr"
-      xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <head>
     <title>Accueil</title>
@@ -9,9 +9,11 @@
 <div layout:fragment="content">
     <section class="card">
         <h1>Accueil</h1>
-        <p>Le projet Spring Boot est prêt pour le chapitre 2.</p>
-        <p>Utilisez le menu pour accéder à la gestion des artistes.</p>
-        <a class="button" th:href="@{/artists}">Voir les artistes</a>
+        <p>Le projet reprend la structure attendue par le roadmap : Flyway, CRUD Artist, notifications flash, authentification Spring Security et formulaire de connexion personnalisé.</p>
+        <div class="actions-row">
+            <a class="button" th:href="@{/artists}">Voir les artistes</a>
+            <a class="button secondary" th:href="@{/login}">Connexion</a>
+        </div>
     </section>
 </div>
 </body>

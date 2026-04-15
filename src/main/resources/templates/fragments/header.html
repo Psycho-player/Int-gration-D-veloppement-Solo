@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <header th:fragment="header" class="site-header">
     <div class="container header-inner">
         <a class="brand" th:href="@{/}">Projet Réservations</a>
+
         <nav>
             <ul class="nav-list">
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/artists}">Artists</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin}">Admin</a></li>
+                <li sec:authorize="hasRole('MEMBER')"><a th:href="@{/user}">Mon espace</a></li>
             </ul>
         </nav>
+
+        <div class="auth-box">
+            <p sec:authorize="!isAuthenticated()">
+                Vous n'êtes pas connecté.<br>
+                <a th:href="@{/login}" class="nav-link">Se connecter</a>
+            </p>
+
+            <div sec:authorize="isAuthenticated()">
+                <p>Bonjour <span sec:authentication="principal.username">Bob</span> !</p>
+                <form th:action="@{/logout}" method="post" class="logout-form">
+                    <button class="button ghost" type="submit">Se déconnecter</button>
+                </form>
+            </div>
+        </div>
     </div>
 </header>
 </body>

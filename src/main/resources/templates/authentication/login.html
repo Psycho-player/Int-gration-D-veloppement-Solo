@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="card form-card narrow-card">
+        <h1>Connexion</h1>
+
+        <form th:action="@{/login}" method="post" class="form-grid">
+            <div>
+                <label for="login">Login</label>
+                <input id="login" type="text" name="login" maxlength="60" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" maxlength="60" required>
+            </div>
+            <div class="actions-row">
+                <button class="button" type="submit">Se connecter</button>
+            </div>
+        </form>
+
+        <p class="muted">Comptes de démonstration : <strong>bob / 12345678</strong> et <strong>anna / 12345678</strong>.</p>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+package com.example.demo.model;
+
+public enum UserRole {
+    ADMIN("Administrateur"),
+    MEMBER("Membre"),
+    AFFILIATE("Affilié"),
+    PRESS("Critique de presse"),
+    PRODUCER("Producteur");
+
+    private final String role;
+
+    UserRole(String role) {
+        this.role = role;
+    }
+
+    public String getValue() {
+        return role;
+    }
+}
