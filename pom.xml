@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+=======
 <project xmlns="https://maven.apache.org/POM/4.0.0"
          xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
+        <version>3.5.14</version>
+=======
         <version>3.5.6</version>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
         <relativePath/>
     </parent>
 
     <groupId>com.example</groupId>
+<<<<<<< HEAD
+    <artifactId>reservation-springboot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>reservation-springboot</name>
+    <description>Petit projet Spring Boot pour une page de réservation</description>
+=======
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Projet Réservations - chapitres 2 à 4</description>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
 
     <properties>
         <java.version>17</java.version>
@@ -24,7 +41,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
+            <artifactId>spring-boot-starter-web</artifactId>
+=======
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
         </dependency>
 
         <dependency>
@@ -34,6 +55,8 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
+=======
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
@@ -49,10 +72,13 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
+<<<<<<< HEAD
+=======
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
@@ -87,6 +113,7 @@
         </dependency>
 
         <dependency>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -96,6 +123,10 @@
     <build>
         <plugins>
             <plugin>
+<<<<<<< HEAD
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+=======
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -119,6 +150,7 @@
                         </exclude>
                     </excludes>
                 </configuration>
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
             </plugin>
         </plugins>
     </build>

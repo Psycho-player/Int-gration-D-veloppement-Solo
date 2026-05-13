@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+=======
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -5,10 +17,23 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185
 .apt_generated
 .classpath
 .factorypath
 .project
+<<<<<<< HEAD
+.settings/
+.springBeans
+.sts4-cache/
+
+### VS Code ###
+.vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+=======
 .settings
 .springBeans
 .sts4-cache
@@ -31,3 +56,4 @@ build/
 
 ### VS Code ###
 .vscode/
+>>>>>>> ca8e66bd938d6d0536c699056ddf7d8d98a80185

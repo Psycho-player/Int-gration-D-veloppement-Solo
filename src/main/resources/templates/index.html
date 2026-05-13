@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="hero">
+    <nav class="navbar">
+        <div class="logo">ReserveNow</div>
+        <a href="#reservation" class="nav-button">Réserver</a>
+    </nav>
+
+    <section class="hero-content">
+        <p class="tag">Simple • Rapide • Clair</p>
+        <h1>Page de réservation avec Spring Boot</h1>
+        <p>
+            Un petit projet web complet avec formulaire, validation,
+            liste des réservations et suppression.
+        </p>
+        <a href="#reservation" class="primary-button">Faire une réservation</a>
+    </section>
+</header>
+
+<main class="container">
+    <section class="card form-card" id="reservation">
+        <div class="section-title">
+            <p>Nouvelle réservation</p>
+            <h2>Remplir le formulaire</h2>
+        </div>
+
+        <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <form th:action="@{/reservations}" th:object="${reservation}" method="post" class="reservation-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="fullName">Nom complet</label>
+                    <input id="fullName" type="text" th:field="*{fullName}" placeholder="Ex : Raul Lopez">
+                    <small class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" th:field="*{email}" placeholder="exemple@email.com">
+                    <small class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reservationDate">Date</label>
+                    <input id="reservationDate" type="date" th:field="*{reservationDate}">
+                    <small class="error" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reservationTime">Heure</label>
+                    <input id="reservationTime" type="time" th:field="*{reservationTime}">
+                    <small class="error" th:if="${#fields.hasErrors('reservationTime')}" th:errors="*{reservationTime}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Nombre de personnes</label>
+                    <input id="guests" type="number" min="1" max="12" th:field="*{guests}" placeholder="2">
+                    <small class="error" th:if="${#fields.hasErrors('guests')}" th:errors="*{guests}"></small>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" th:field="*{message}" placeholder="Informations complémentaires"></textarea>
+                    <small class="error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></small>
+                </div>
+            </div>
+
+            <button type="submit" class="primary-button">Enregistrer la réservation</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <div class="section-title">
+            <p>Gestion</p>
+            <h2>Réservations enregistrées</h2>
+        </div>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(reservations)}">
+            Aucune réservation pour le moment.
+        </div>
+
+        <div class="reservation-list" th:if="${!#lists.isEmpty(reservations)}">
+            <article class="reservation-item" th:each="item : ${reservations}">
+                <div>
+                    <h3 th:text="${item.fullName}">Nom client</h3>
+                    <p>
+                        <span th:text="${#temporals.format(item.reservationDate, 'dd/MM/yyyy')}">01/01/2026</span>
+                        à
+                        <span th:text="${#temporals.format(item.reservationTime, 'HH:mm')}">19:30</span>
+                    </p>
+                    <p>
+                        <strong th:text="${item.guests}">2</strong>
+                        personne(s) •
+                        <span th:text="${item.email}">email@example.com</span>
+                    </p>
+                    <p class="message" th:if="${item.message != null && !item.message.isBlank()}" th:text="${item.message}"></p>
+                </div>
+
+                <form th:action="@{/reservations/{id}/delete(id=${item.id})}" method="post">
+                    <button type="submit" class="danger-button">Supprimer</button>
+                </form>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Projet démo Spring Boot • Thymeleaf • Validation</p>
+</footer>
+</body>
+</html>
